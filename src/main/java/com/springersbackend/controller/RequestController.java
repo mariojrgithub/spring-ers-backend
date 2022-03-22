@@ -46,8 +46,8 @@ public class RequestController {
 	}
 
 	// http://localhost:4444/api/associate/requests/{id}
-	@GetMapping("associate/requests/{employeeId}")
-	List<RequestPojo> fetchEmployeeRequests(@PathVariable("employeeId") int employeeId) throws SystemException {
+	@GetMapping("associate/requests/{id}")
+	List<RequestPojo> fetchEmployeeRequests(@PathVariable("id") int employeeId) throws SystemException {
 		return requestService.fetchEmployeeRequests(employeeId);
 	}
 

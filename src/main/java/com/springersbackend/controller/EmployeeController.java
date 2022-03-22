@@ -32,5 +32,11 @@ public class EmployeeController {
 	RequestPojo createNewRequest(@RequestBody RequestPojo requestPojo) throws SystemException {
 		return employeeService.createNewRequest(requestPojo);
 	}
+	
+	// http://localhost:4444/api/login
+	@PostMapping("login")
+	EmployeePojo loginEmployee(@RequestBody EmployeePojo employeePojo) throws SystemException {
+		return employeeService.loginEmployee(employeePojo);
+	}
 
 }

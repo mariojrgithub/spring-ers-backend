@@ -29,19 +29,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public EmployeePojo fetchOneEmployee(String employeeEmail) throws SystemException {
-		Optional<EmployeeEntity> optional = employeeDao.findByEmployeeEmail(employeeEmail);
-		EmployeePojo employeePojo = null;
-		if (optional.isPresent()) {
-			EmployeeEntity employeeEntity = optional.get();
-			employeePojo = new EmployeePojo(employeeEntity.getEmployeeId(), employeeEntity.getEmployeeRole(),
-					employeeEntity.getEmployeeEmail(), employeeEntity.getEmployeePassword(),
-					employeeEntity.getEmployeeName());
-		}
-
-		return employeePojo;
-	}
+//	@Override
+//	public EmployeePojo fetchOneEmployee(String employeeEmail) throws SystemException {
+//		Optional<EmployeeEntity> optional = employeeDao.findByEmployeeEmail(employeeEmail);
+//		EmployeePojo employeePojo = null;
+//		if (optional.isPresent()) {
+//			EmployeeEntity employeeEntity = optional.get();
+//			employeePojo = new EmployeePojo(employeeEntity.getEmployeeId(), employeeEntity.getEmployeeRole(),
+//					employeeEntity.getEmployeeEmail(), employeeEntity.getEmployeePassword(),
+//					employeeEntity.getEmployeeName());
+//		}
+//
+//		return employeePojo;
+//	}
 
 	@Override
 	public EmployeePojo fetchOneEmployee(int employeeId) throws SystemException {
@@ -56,19 +56,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeePojo;
 	}
 
-//	@Override
-//	public EmployeePojo loginEmployee(EmployeePojo employeePojo) throws SystemException {
-//		Optional<EmployeeEntity> optional = employeeDao
-//				.findByEmployeeEmailAndEmployeePasswordAndEmployeeRole(employeePojo);
-//		EmployeePojo employeePojo2 = null;
-//		if (optional.isPresent()) {
-//			EmployeeEntity employeeEntity = optional.get();
-//			employeePojo2 = new EmployeePojo(employeeEntity.getEmployeeId(), employeeEntity.getEmployeeRole(),
-//					employeeEntity.getEmployeeEmail(), employeeEntity.getEmployeePassword(),
-//					employeeEntity.getEmployeeName());
-//		}
-//		return employeePojo2;
-//	}
+	@Override
+	public EmployeePojo loginEmployee(EmployeePojo employeePojo) throws SystemException {
+
+		Optional<EmployeeEntity> optional = employeeDao.findByEmployeeEmailAndEmployeePasswordAndEmployeeRole(
+				employeePojo.getEmployeeEmail(), employeePojo.getEmployeePassword(), employeePojo.getEmployeeRole());
+
+		EmployeePojo employeePojo2 = null;
+
+		if (optional.isPresent()) {
+			EmployeeEntity employeeEntity = optional.get();
+
+			employeePojo2 = new EmployeePojo(employeeEntity.getEmployeeId(), employeeEntity.getEmployeeEmail(),
+					employeeEntity.getEmployeePassword(), employeeEntity.getEmployeeRole(),
+					employeeEntity.getEmployeeName());
+
+		}
+		return employeePojo2;
+	}
 
 	@Override
 	public List<EmployeePojo> fetchAllEmployees() throws SystemException {

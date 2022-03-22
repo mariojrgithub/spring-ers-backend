@@ -11,13 +11,13 @@ import com.springersbackend.pojo.RequestPojo;
 public interface EmployeeService {
 
 	// fetch one employee
-	EmployeePojo fetchOneEmployee(String employeeEmail) throws SystemException;
+//	EmployeePojo fetchOneEmployee(String employeeEmail) throws SystemException;
 
 	// fetch one employee by ID
 	EmployeePojo fetchOneEmployee(int employeeId) throws SystemException;
 
 	// login
-//	EmployeePojo loginEmployee(EmployeePojo employeePojo) throws SystemException;
+	EmployeePojo loginEmployee(EmployeePojo employeePojo) throws SystemException;
 
 	// list all employees
 	List<EmployeePojo> fetchAllEmployees() throws SystemException;
