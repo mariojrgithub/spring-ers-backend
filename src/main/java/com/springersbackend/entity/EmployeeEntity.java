@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -12,8 +13,8 @@ import javax.persistence.Table;
 public class EmployeeEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "employee_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "employee_id", columnDefinition = "serial")
 	private int employeeId;
 
 	@Column(name = "employee_role")
@@ -33,7 +34,7 @@ public class EmployeeEntity {
 		// TODO Auto-generated constructor stub
 	}
 
-	public EmployeeEntity(int employeeId, String employeeRole, String employeeEmail, String employeePassword,
+	public EmployeeEntity(int employeeId, String employeeEmail, String employeePassword, String employeeRole,
 			String employeeName) {
 		super();
 		this.employeeId = employeeId;

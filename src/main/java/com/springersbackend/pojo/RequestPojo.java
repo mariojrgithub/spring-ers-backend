@@ -1,13 +1,15 @@
 package com.springersbackend.pojo;
 
+import java.sql.Timestamp;
+
 public class RequestPojo {
 
 	private int expenseId;
 	private long expenseAmount;
 	private int employeeId;
-	private String requestDate;
+	private Timestamp requestDate;
 	private String expenseStatus;
-	private String adjudicatedDate;
+	private Timestamp adjudicatedDate;
 	private String approveDeny;
 
 	public RequestPojo() {
@@ -15,8 +17,8 @@ public class RequestPojo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RequestPojo(int expenseId, long expenseAmount, int employeeId, String requestDate, String expenseStatus,
-			String adjudicatedDate, String approveDeny) {
+	public RequestPojo(int expenseId, long expenseAmount, int employeeId, Timestamp requestDate, String expenseStatus,
+			Timestamp adjudicatedDate, String approveDeny) {
 		super();
 		this.expenseId = expenseId;
 		this.expenseAmount = expenseAmount;
@@ -51,11 +53,11 @@ public class RequestPojo {
 		this.employeeId = employeeId;
 	}
 
-	public String getRequestDate() {
+	public Timestamp getRequestDate() {
 		return requestDate;
 	}
 
-	public void setRequestDate(String requestDate) {
+	public void setRequestDate(Timestamp requestDate) {
 		this.requestDate = requestDate;
 	}
 
@@ -67,11 +69,11 @@ public class RequestPojo {
 		this.expenseStatus = expenseStatus;
 	}
 
-	public String getAdjudicatedDate() {
+	public Timestamp getAdjudicatedDate() {
 		return adjudicatedDate;
 	}
 
-	public void setAdjudicatedDate(String adjudicatedDate) {
+	public void setAdjudicatedDate(Timestamp adjudicatedDate) {
 		this.adjudicatedDate = adjudicatedDate;
 	}
 

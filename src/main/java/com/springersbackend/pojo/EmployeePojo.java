@@ -13,7 +13,7 @@ public class EmployeePojo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public EmployeePojo(int employeeId, String employeeRole, String employeeEmail, String employeePassword,
+	public EmployeePojo(int employeeId, String employeeEmail, String employeePassword, String employeeRole,
 			String employeeName) {
 		super();
 		this.employeeId = employeeId;

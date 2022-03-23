@@ -1,5 +1,6 @@
 package com.springersbackend.service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -71,6 +72,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 					employeeEntity.getEmployeePassword(), employeeEntity.getEmployeeRole(),
 					employeeEntity.getEmployeeName());
 
+			System.out.println(employeePojo2);
+			System.out.println(employeeEntity);
 		}
 		return employeePojo2;
 	}
@@ -91,8 +94,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public RequestPojo createNewRequest(RequestPojo requestPojo) throws SystemException {
+		// current time
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		
 		RequestEntity requestEntity = new RequestEntity(requestPojo.getExpenseId(), requestPojo.getExpenseAmount(),
-				requestPojo.getEmployeeId(), requestPojo.getRequestDate(), requestPojo.getExpenseStatus(),
+				requestPojo.getEmployeeId(), timestamp, "pending",
 				requestPojo.getAdjudicatedDate(), requestPojo.getApproveDeny());
 
 		requestDao.saveAndFlush(requestEntity);

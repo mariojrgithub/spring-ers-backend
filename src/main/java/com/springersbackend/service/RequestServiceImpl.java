@@ -1,5 +1,6 @@
 package com.springersbackend.service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -133,9 +134,12 @@ public class RequestServiceImpl implements RequestService {
 
 	@Override
 	public RequestPojo updateRequest(RequestPojo requestPojo) throws SystemException {
+		// current time
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		
 		RequestEntity requestEntity = new RequestEntity(requestPojo.getExpenseId(), requestPojo.getExpenseAmount(),
 				requestPojo.getEmployeeId(), requestPojo.getRequestDate(), requestPojo.getExpenseStatus(),
-				requestPojo.getAdjudicatedDate(), requestPojo.getApproveDeny());
+				timestamp, requestPojo.getApproveDeny());
 
 		requestDao.save(requestEntity);
 
