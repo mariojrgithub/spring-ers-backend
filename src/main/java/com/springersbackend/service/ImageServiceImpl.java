@@ -1,10 +1,13 @@
 package com.springersbackend.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springersbackend.dao.ImageDao;
 import com.springersbackend.entity.ImageEntity;
@@ -23,13 +26,19 @@ public class ImageServiceImpl implements ImageService {
 	}
 
 	@Override
-	public ImagePojo uploadImage(ImagePojo imagePojo) throws SystemException {
-		ImageEntity imageEntity = new ImageEntity(imagePojo.getImageId(), imagePojo.getImageName(),
-				imagePojo.getImageType(), imagePojo.getImageByte());
+	public ImagePojo uploadImage(MultipartFile file) throws SystemException {
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		ImageEntity imageEntity = null;
+		try {
+			imageEntity = new ImageEntity(fileName, file.getContentType(), file.getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		imageDao.save(imageEntity);
 
-		imagePojo = new ImagePojo(imageEntity.getImageId(), imageEntity.getImageName(), imageEntity.getImageType(),
+		ImagePojo imagePojo = new ImagePojo(imageEntity.getImageId(), imageEntity.getImageName(), imageEntity.getImageType(),
 				imageEntity.getImageByte());
 
 		return imagePojo;

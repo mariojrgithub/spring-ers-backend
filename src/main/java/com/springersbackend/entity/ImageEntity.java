@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "image_details")
@@ -25,6 +28,8 @@ public class ImageEntity {
 	@Column(name = "image_type")
 	private String imageType;
 
+	@Lob
+	@Type(type="org.hibernate.type.BinaryType")
 	@Column(name = "image_byte")
 	private byte[] imageByte;
 
@@ -41,6 +46,13 @@ public class ImageEntity {
 		this.imageByte = imageByte;
 	}
 
+	public ImageEntity(String imageName, String imageType, byte[] imageByte) {
+		super();
+		this.imageName = imageName;
+		this.imageType = imageType;
+		this.imageByte = imageByte;
+	}
+	
 	public int getImageId() {
 		return imageId;
 	}

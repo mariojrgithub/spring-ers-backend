@@ -21,6 +21,13 @@ public class ImagePojo {
 		this.imageType = imageType;
 		this.imageByte = imageByte;
 	}
+	
+	public ImagePojo(String imageName, String imageType, byte[] imageByte) {
+		super();
+		this.imageName = imageName;
+		this.imageType = imageType;
+		this.imageByte = imageByte;
+	}
 
 	public int getImageId() {
 		return imageId;

@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springersbackend.exceptions.SystemException;
 import com.springersbackend.pojo.ImagePojo;
@@ -25,8 +27,8 @@ public class ImageController {
 	// http://localhost:4444/api/manager/pic-upload
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("manager/pic-upload")
-	ImagePojo uploadImage(@ModelAttribute ImagePojo imagePojo) throws SystemException {
-		return imageService.uploadImage(imagePojo);
+	ImagePojo uploadImage(@RequestParam("file") MultipartFile file) throws SystemException {
+		return imageService.uploadImage(file);
 	}
 	
 	// http://localhost:4444/api/manager/all-pics
