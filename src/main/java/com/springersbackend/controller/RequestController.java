@@ -45,7 +45,7 @@ public class RequestController {
 
 	// http://localhost:4444/api/manager/requests/{id}
 	@CrossOrigin(origins = "http://localhost:4200")
-	@GetMapping("manager/requests/{id}")
+	@GetMapping("manager/request/{id}")
 	RequestPojo fetchOneRequest(@PathVariable("id") int requestId) throws SystemException {
 		return requestService.fetchOneRequest(requestId);
 	}
