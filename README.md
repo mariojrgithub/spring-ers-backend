@@ -52,7 +52,7 @@ An Angular delivered reimbursement managements application consisting of:
 
 ### Jenkins Build in EC2, S3
 ![ERS Backend](ers-backend-ci_cd.JPG "Backend Jenkins Build")
-![ERS Frontend(ers-frontend-ci_cd.JPG "Frontend Jenkins Build")
+![ERS Frontend](ers-frontend-ci_cd.JPG "Frontend Jenkins Build")
 
 ### Assumptions:
 1. Associates can only add a new requests, not delete them.
