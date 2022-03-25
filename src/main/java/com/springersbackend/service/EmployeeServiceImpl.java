@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import com.springersbackend.pojo.RequestPojo;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+	
+	public static final Logger LOG = LogManager.getLogger(EmployeeServiceImpl.class);
 
 	@Autowired
 	EmployeeDao employeeDao;
@@ -30,22 +34,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// TODO Auto-generated constructor stub
 	}
 
-//	@Override
-//	public EmployeePojo fetchOneEmployee(String employeeEmail) throws SystemException {
-//		Optional<EmployeeEntity> optional = employeeDao.findByEmployeeEmail(employeeEmail);
-//		EmployeePojo employeePojo = null;
-//		if (optional.isPresent()) {
-//			EmployeeEntity employeeEntity = optional.get();
-//			employeePojo = new EmployeePojo(employeeEntity.getEmployeeId(), employeeEntity.getEmployeeRole(),
-//					employeeEntity.getEmployeeEmail(), employeeEntity.getEmployeePassword(),
-//					employeeEntity.getEmployeeName());
-//		}
-//
-//		return employeePojo;
-//	}
 
 	@Override
 	public EmployeePojo fetchOneEmployee(int employeeId) throws SystemException {
+		LOG.info("Entered fetchOneEmployee() in Service");
+		
 		Optional<EmployeeEntity> optional = employeeDao.findById(employeeId);
 		EmployeePojo employeePojo = null;
 		if (optional.isPresent()) {
@@ -54,11 +47,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 					employeeEntity.getEmployeeEmail(), employeeEntity.getEmployeePassword(),
 					employeeEntity.getEmployeeName());
 		}
+		
+		LOG.info("Exited fetchOneEmployee() in Service");
+		
 		return employeePojo;
 	}
 
 	@Override
 	public EmployeePojo loginEmployee(EmployeePojo employeePojo) throws SystemException {
+		LOG.info("Entered loginEmployee() in Service");
 
 		Optional<EmployeeEntity> optional = employeeDao.findByEmployeeEmailAndEmployeePasswordAndEmployeeRole(
 				employeePojo.getEmployeeEmail(), employeePojo.getEmployeePassword(), employeePojo.getEmployeeRole());
@@ -75,11 +72,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 			System.out.println(employeePojo2);
 			System.out.println(employeeEntity);
 		}
+		
+		LOG.info("Exited loginEmployee() in Service");
+		
 		return employeePojo2;
 	}
 
 	@Override
 	public List<EmployeePojo> fetchAllEmployees() throws SystemException {
+		LOG.info("Entered fetchAllEmployees() in Service");
+		
 		List<EmployeePojo> allEmployeesPojo = new ArrayList<EmployeePojo>();
 		List<EmployeeEntity> allEmployeesEntity = employeeDao.findAll();
 		for (EmployeeEntity employeeEntity : allEmployeesEntity) {
@@ -88,12 +90,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 					employeeEntity.getEmployeePassword(), employeeEntity.getEmployeeName());
 			allEmployeesPojo.add(employeePojo);
 		}
+		
+		LOG.info("Exited fetchAllEmployees() in Service");
 
 		return allEmployeesPojo;
 	}
 
 	@Override
 	public RequestPojo createNewRequest(RequestPojo requestPojo) throws SystemException {
+		LOG.info("Entered createNewRequest() in Service");
+		
 		// current time
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
@@ -107,6 +113,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 				requestEntity.getEmployeeId(), requestEntity.getRequestDate(), requestEntity.getExpenseStatus(),
 				requestEntity.getAdjudicatedDate(), requestEntity.getApproveDeny());
 
+		LOG.info("Exited createNewRequest() in Service");
+		
 		return requestPojo;
 	}
 
